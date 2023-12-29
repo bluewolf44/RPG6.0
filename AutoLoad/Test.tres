@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CombatData" load_steps=3 format=3 uid="uid://btvwfo3im5hun"]
+
+[ext_resource type="Script" path="res://ResourceClasses/CombatData.gd" id="1_7ul2r"]
+[ext_resource type="Texture2D" uid="uid://ccaue84tb5lyj" path="res://sprites/Singles/tile025.png" id="2_ys00i"]
+
+[resource]
+script = ExtResource("1_7ul2r")
+speed = 10
+health = 10
+damage = 5
+name = "Dave"
+texture = ExtResource("2_ys00i")
+scale = Vector2(4, 4)

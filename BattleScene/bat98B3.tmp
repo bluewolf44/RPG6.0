@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk3suks3erdfn"]
+
+[ext_resource type="Script" path="res://BattleScene/battle.gd" id="1_1o5fr"]
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1o5fr")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 34.0
+offset_right = 1073.0
+offset_bottom = 61.0
+value = 50.0
+show_percentage = false
+
+[node name="EntitiesTextures" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

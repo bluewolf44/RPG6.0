@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://cla1sdxn6gulh"
+path="res://.godot/imported/monochrome_transparent.png-4add5a22b53bb425cfd38b05e85d939e.image"
+
+[deps]
+
+source_file="res://sprites/monochrome_transparent.png"
+dest_files=["res://.godot/imported/monochrome_transparent.png-4add5a22b53bb425cfd38b05e85d939e.image"]
+
+[params]
+
