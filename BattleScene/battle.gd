@@ -6,6 +6,7 @@ var nonControlEntities = []
 var selected:Entitie
 enum EVENT_SET {INFO,SELECT,ACTION}
 var currentEvent:EVENT_SET
+var currentTurn:int = 1
 
 var currentActionSelection:Action
 var currentTargets:Array[Entitie]
@@ -35,6 +36,7 @@ func create_non_control_entitie_attacks():
 	for entitie in nonControlEntities:
 		addBattleAction(BattleActions.new(entitie,[controlEntities.pick_random()],entitie.data.actions.pick_random(),self))
 	update_speed_bar()
+	update_chains()
 
 func normal_add_left(total:int,number:int) -> Vector2:
 	if number >= total or total > 5 or number < 0:
@@ -138,6 +140,8 @@ func clearSlection():
 		entitie.set_color("ffffff")
 
 func addBattleAction(action:BattleActions):
+	action.entitie.currentPoints -= action.action.cost
+	action.entitie.current_actions.append(action)
 	var n = 0
 	var found = false
 	while n < battleActions.size():
@@ -154,6 +158,8 @@ func addBattleAction(action:BattleActions):
 	if !found:
 		battleActions.append([action])
 
+func setCorretCenter(sprite:TextureRect) -> Vector2:
+	return sprite.size*sprite.scale/2
 
 func update_chains() -> void:
 	for chain in $SpeedBar/ChainTexs.get_children():
@@ -162,17 +168,17 @@ func update_chains() -> void:
 	var chain_actions:Array[BattleActions]
 	var current_team:String = ""
 	var start_postion_x:int
-	
+
 	for action_speed in battleActions:
 		var is_same:bool = true
 		for action in action_speed:
 			if current_team == "":
 				current_team = action.entitie.get_team()
-				start_postion_x = action.tex_speed.position.x+action.tex_speed.size.x
-			
+				start_postion_x = action.tex_speed.position.x+setCorretCenter(action.tex_speed).x
+				
 			elif action.entitie.get_team() != current_team:
 				if chain_actions.size() > 1 and chain_actions[0].speed != chain_actions[-1].speed:
-					create_chain(start_postion_x,chain_actions[-1].tex_speed.position.x,"10dfdf")
+					create_chain(start_postion_x,chain_actions[-1].tex_speed.position.x+setCorretCenter(chain_actions[-1].tex_speed).x,"10dfdf")
 				is_same = false
 				current_team = ""
 				break
@@ -189,7 +195,7 @@ func update_chains() -> void:
 				chain_actions.append(action)
 				action.chain_actions = chain_actions
 	if current_team != "" and chain_actions.size() > 1 and chain_actions[0].speed != chain_actions[-1].speed:
-		create_chain(start_postion_x,chain_actions[-1].tex_speed.position.x,"10dfdf")
+		create_chain(start_postion_x,chain_actions[-1].tex_speed.position.x+setCorretCenter(chain_actions[-1].tex_speed).x,"10dfdf")
 
 func create_chain(start_postion_x:int,end_postion_x:int,color:Color):
 	for n in range((end_postion_x-start_postion_x)/32+1):
@@ -207,16 +213,17 @@ func update_speed_bar() -> void:
 	$SpeedBar/ProgressBar.value = min_value-2
 	
 	if min_value == max_value:
+		var y:int = 32
 		for n in range(len(battleActions[0])):
-			battleActions[0][n].tex_speed.position = Vector2(500,n*32)
+			battleActions[0][n].tex_speed.position = Vector2(500-setCorretCenter(battleActions[0][n].tex_speed).x,y)
+			y += setCorretCenter(battleActions[0][n].tex_speed).y*2
 	else:
 		var last_speed = 0
 		for actions in battleActions:
 			var totalY = 0
 			for n in range(len(actions)):
-				actions[n].tex_speed.position = Vector2(1000/(max_value-min_value+4)*(actions[n].speed-min_value+2)-actions[n].tex_speed.size.x*actions[n].tex_speed.scale.x/2,totalY)
-				totalY += actions[n].tex_speed.size.y*actions[n].tex_speed.scale.y
-
+				actions[n].tex_speed.position = Vector2(1000/(max_value-min_value+4)*(actions[n].speed-min_value+2)-setCorretCenter(actions[n].tex_speed).x,totalY)
+				totalY += setCorretCenter(actions[n].tex_speed).y*2
 
 func start_actions() -> void:
 	var current_chain_size:int = 0
@@ -242,7 +249,11 @@ func start_actions() -> void:
 	battleActions.clear()
 	$SpeedBar/ProgressBar.value = $SpeedBar/ProgressBar.min_value
 	
+	currentTurn += 1
 	for e in controlEntities + nonControlEntities:
+		e.currentPoints += e.data.actionPointsPerTurn + int(currentTurn/2)
 		e.current_actions.clear()
 	
 	update_chains()
+	
+	

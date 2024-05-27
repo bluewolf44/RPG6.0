@@ -8,13 +8,17 @@ var data:CombatData
 var main:Control
 var base_posistion:Vector2
 
+var currentDef:int
+var currentPoints:int
+var currentHealth:int
+
 func _init(data:CombatData,main:Control) -> void:
 	self.data = data
 	self.main = main
 	
-	data.currentHealth = data.maxHealth
-	data.currentDef = data.baseDef
-	data.currentPoints = data.actionPointsStart
+	currentHealth = data.maxHealth
+	currentDef = data.baseDef
+	currentPoints = data.actionPointsStart
 
 func createSelf(placement:Vector2) -> void:
 	var control = Control.new()
@@ -32,16 +36,23 @@ func createSelf(placement:Vector2) -> void:
 	
 	base_posistion = placement
 
-func _to_string():
+func _to_string() -> String:
 	return data.entitieName
 
 func select(inputEvent:InputEvent) -> void:
 	pass
 	
-func set_color(color:Color):
+func set_color(color:Color) -> void:
 	sprite.self_modulate = color
 	for n in current_actions:
 		n.tex_speed.self_modulate = color
 
-func play_animation():
+func play_animation() -> void:
 	pass
+
+func get_team() -> String:
+	return "nan"
+
+func getColor() -> Color:
+	return Color("ffffff")
+

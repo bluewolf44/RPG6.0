@@ -10,13 +10,13 @@ func select(inputEvent:InputEvent) -> void:
 			if main.selected != null:
 				main.clear_selected()
 			main.selected = self
-			set_color("c94776")
+			set_color(getColor())
 			var actionBar = main.get_node("PanelContainer/MarginContainer/VBoxContainer")
 			actionBar.visible = true
 		
-			actionBar.get_node("Text/Label2").text = str(data.currentHealth)
-			actionBar.get_node("ActionPointsBar/ActionPoints").custom_minimum_size = Vector2(34*data.currentPoints,34)
-			actionBar.get_node("ActionPointsBar/ActionPoints2").custom_minimum_size = Vector2(34*(10-data.currentPoints),34)
+			actionBar.get_node("Text/Label2").text = str(currentHealth)
+			actionBar.get_node("ActionPointsBar/ActionPoints").custom_minimum_size = Vector2(34*currentPoints,34)
+			actionBar.get_node("ActionPointsBar/ActionPoints2").custom_minimum_size = Vector2(34*(10-currentPoints),34)
 			
 			for node in actionBar.get_node("HBoxContainer").get_children():
 				node.visible = false
@@ -26,3 +26,6 @@ func select(inputEvent:InputEvent) -> void:
 
 func get_team() -> String:
 	return "NonControl"
+
+func getColor() -> Color:
+	return Color("c94776")

@@ -11,7 +11,7 @@ func select(inputEvent:InputEvent) -> void:
 				main.clear_selected()
 			
 			main.selected = self
-			set_color("3fc4ff")
+			set_color(getColor())
 			
 			var actionBar = main.get_node("PanelContainer/MarginContainer/VBoxContainer")
 			actionBar.visible = true
@@ -24,14 +24,14 @@ func select(inputEvent:InputEvent) -> void:
 				actionBar.get_node("HBoxContainer").get_child(i).text = data.actions[i].actionName
 				actionBar.get_node("HBoxContainer").get_child(i).disabled = false
 				
-				if data.actions[i].cost <= data.currentPoints:
+				if data.actions[i].cost <= currentPoints and not get_in_current(data.actions[i]):
 					if !actionBar.get_node("HBoxContainer").get_child(i).pressed.is_connected(setTargets.bind(data.actions[i])):
 						actionBar.get_node("HBoxContainer").get_child(i).pressed.connect(setTargets.bind(data.actions[i]))
 				else:
 					actionBar.get_node("HBoxContainer").get_child(i).disabled = true
-			actionBar.get_node("Text/Label2").text = str(data.currentHealth)
-			actionBar.get_node("ActionPointsBar/ActionPoints").custom_minimum_size = Vector2(34*data.currentPoints,34)
-			actionBar.get_node("ActionPointsBar/ActionPoints2").custom_minimum_size = Vector2(34*(10-data.currentPoints),34)
+			actionBar.get_node("Text/Label2").text = str(currentHealth)
+			actionBar.get_node("ActionPointsBar/ActionPoints").custom_minimum_size = Vector2(34*currentPoints,34)
+			actionBar.get_node("ActionPointsBar/ActionPoints2").custom_minimum_size = Vector2(34*(10-currentPoints),34)
 			
 		elif main.currentEvent == main.EVENT_SET.SELECT:
 			pass
@@ -45,3 +45,12 @@ func setTargets(action:Action) -> void:
 
 func get_team() -> String:
 	return "Control"
+
+func getColor() -> Color:
+	return Color("3fc4ff")
+
+func get_in_current(action:Action) -> bool:
+	for a in current_actions:
+		if a.action == action:
+			return true
+	return false

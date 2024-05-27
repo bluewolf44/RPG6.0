@@ -21,6 +21,6 @@ actionName = "Fast"
 targetsType = 2
 maxNumberOfTargets = 1
 minNumberOfTargets = 1
-cost = 1
+cost = 2
 speedMult = 0.7
 actionAnimation = SubResource("Resource_bu6c6")

@@ -17,8 +17,8 @@ func runAction(battleAction:BattleActions) -> void:
 		
 	
 	for entitie in battleAction.targets:
-		print(currentAttack-defenceMult*entitie.data.baseDef)
-		entitie.data.currentHealth -= currentAttack-defenceMult*entitie.data.baseDef
+		print(currentAttack-defenceMult*entitie.currentDef)
+		entitie.currentHealth -= currentAttack-defenceMult*entitie.currentDef
 	
 	if next != null:
 		next.runAction(battleAction)

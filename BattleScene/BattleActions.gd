@@ -39,6 +39,8 @@ func on_moused()->void:
 	for entitie in targets:
 		colors.append(entitie.sprite.self_modulate)
 		entitie.set_color("ddd41f")
+	entitie.set_color(entitie.getColor())
+	tex_speed.self_modulate = entitie.getColor()
 
 func use_action() ->bool:
 	await action.runAction(self)
@@ -47,7 +49,8 @@ func use_action() ->bool:
 func exit_mouse()->void:
 	for i in range(targets.size()):
 		targets[i].set_color(colors[i])
-		#entitie.set_color("ffffff")
+		entitie.set_color("ffffff")
+		tex_speed.self_modulate = Color("ffffff")
 
 func create_lable()->void:
 	var lable_text:Array[String] = [
