@@ -1,13 +1,19 @@
-[gd_resource type="Resource" script_class="CombatData" load_steps=3 format=3 uid="uid://btvwfo3im5hun"]
+[gd_resource type="Resource" script_class="CombatData" load_steps=6 format=3 uid="uid://btvwfo3im5hun"]
 
 [ext_resource type="Script" path="res://ResourceClasses/CombatData.gd" id="1_7ul2r"]
+[ext_resource type="Resource" uid="uid://bm4kmmvmeq0pu" path="res://AutoLoad/AttackTest1.tres" id="1_cimwq"]
+[ext_resource type="Resource" uid="uid://bpa82h464scqn" path="res://AutoLoad/AttackTest2.tres" id="2_tfbtq"]
 [ext_resource type="Texture2D" uid="uid://ccaue84tb5lyj" path="res://sprites/Singles/tile025.png" id="2_ys00i"]
+[ext_resource type="Resource" uid="uid://cewwp13nhk2gy" path="res://AutoLoad/AttackTest3.tres" id="3_3y4ci"]
 
 [resource]
 script = ExtResource("1_7ul2r")
-speed = 10
-health = 10
-damage = 5
-name = "Dave"
+entitieName = "Test"
 texture = ExtResource("2_ys00i")
 scale = Vector2(4, 4)
+baseSpeed = 10
+maxHealth = 20
+baseDef = 3
+actionPointsStart = 3
+actionPointsPerTurn = 1
+actions = Array[Resource("res://ResourceClasses/Action.gd")]([ExtResource("1_cimwq"), ExtResource("2_tfbtq"), ExtResource("3_3y4ci")])

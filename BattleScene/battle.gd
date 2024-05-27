@@ -2,66 +2,23 @@ extends Control
 
 var controlEntities = []
 var nonControlEntities = []
+
 var selected:Entitie
-var selected_action:String
+enum EVENT_SET {INFO,SELECT,ACTION}
+var currentEvent:EVENT_SET
 
-class Entitie:
-	var tex_rect:TextureRect
-	var tex_speed:TextureRect
-	var data:CombatData
-	var main:Control
-	
-	func _init(data:CombatData,main:Control) -> void:
-		self.data = data
-		self.main = main
-	
-	func createSelf(placement:Vector2) -> void:
-		tex_rect = TextureRect.new()
-		tex_rect.texture = data.texture
-		tex_rect.scale = data.scale
-		tex_rect.mouse_filter = Control.MOUSE_FILTER_STOP
-		tex_rect.position = placement
-		tex_rect.gui_input.connect(select)
-		main.get_node("EntitiesTextures").add_child(tex_rect)
-		
-		tex_speed = TextureRect.new()
-		tex_speed.texture = data.texture
-		tex_speed.scale = data.scale/2
-		main.get_node("SpeedBar/EntitesSpeeds").add_child(tex_speed)
-	
-	func select(inputEvent:InputEvent) -> void:
-		pass
+var currentActionSelection:Action
+var currentTargets:Array[Entitie]
 
-class ControlEntitie extends Entitie:
-	func select(inputEvent:InputEvent) -> void:
-		if inputEvent.is_action("LMB"):
-			if main.selected == self:
-				return
-			if main.selected != null:
-				main.clear_selected()
-			
-			main.selected = self
-			tex_rect.self_modulate = "3fc4ff"
-			tex_speed.self_modulate = "3fc4ff"
-			main.get_node("PanelContainer/MarginContainer/VBoxContainer").visible = true
-
-class NonControlEntitie extends Entitie:
-	func select(inputEvent:InputEvent) -> void:
-		if inputEvent.is_action("LMB"):
-			if main.selected == self:
-				return
-			if main.selected != null:
-				main.clear_selected()
-			main.selected = self
-			tex_rect.self_modulate = "c94776"
-			tex_speed.self_modulate = "c94776"
-			main.get_node("PanelContainer/MarginContainer/VBoxContainer").visible = true
+var battleActions = []
 
 func _ready() -> void:
-	print("test")
-	readyBattle(Data.party,Data.party)
+	#readyBattle(Data.party,[load("res://AutoLoad/Spider.tres")])
+	readyBattle(Data.party,[load("res://AutoLoad/Dryad.tres"),load("res://AutoLoad/Spider.tres")])
 
 func readyBattle(party:Array,enemies:Array) -> void:
+	currentEvent = EVENT_SET.INFO
+	
 	for p in party:
 		var entitie = ControlEntitie.new(p,self)
 		entitie.createSelf(normal_add_left(party.size(),controlEntities.size()))
@@ -71,6 +28,13 @@ func readyBattle(party:Array,enemies:Array) -> void:
 		var entitie = NonControlEntitie.new(e,self)
 		entitie.createSelf(normal_add_right(enemies.size(),nonControlEntities.size()))
 		nonControlEntities.append(entitie)
+		
+	create_non_control_entitie_attacks()
+
+func create_non_control_entitie_attacks():
+	for entitie in nonControlEntities:
+		addBattleAction(BattleActions.new(entitie,[controlEntities.pick_random()],entitie.data.actions.pick_random(),self))
+	update_speed_bar()
 
 func normal_add_left(total:int,number:int) -> Vector2:
 	if number >= total or total > 5 or number < 0:
@@ -135,14 +99,150 @@ func normal_add_right(total:int,number:int) -> Vector2:
 		][total-1][number]
 
 func clear_selected():
-	selected.tex_rect.self_modulate = "ffffff"
-	selected.tex_speed.self_modulate = "ffffff"
+	selected.set_color("ffffff")
 	$PanelContainer/MarginContainer/VBoxContainer.visible = false
 	selected = null
 
+func back_ground_click(event:InputEvent):
+	if currentEvent == EVENT_SET.INFO:
+		if event.is_action_released("LMB") or event.is_action_released("RMB"):
+			if selected != null:
+				clear_selected()
+			#print(event)
+	elif currentEvent == EVENT_SET.SELECT:
+		if event.is_action_released("RMB"):
+			clearSlection()
 
-func back_ground_click(event):
-	if event.is_action("LMB"):
-		if selected != null:
-			clear_selected()
-		#print(event)
+func createSelections(entities:Array,action:Action):
+	currentEvent = EVENT_SET.SELECT
+	currentActionSelection = action
+	currentTargets = []
+	for entitie in entities:
+		entitie.set_color("ddd41f")
+
+func addTarget(entitie:Entitie):
+	currentTargets.append(entitie)
+	if currentActionSelection.maxNumberOfTargets == currentTargets.size():
+		addBattleAction(BattleActions.new(selected,currentTargets,currentActionSelection,self))
+		update_speed_bar()
+		update_chains()
+		clearSlection()
+
+func clearSlection():
+	currentEvent = EVENT_SET.INFO
+	currentActionSelection = null
+	selected = null
+	$PanelContainer/MarginContainer/VBoxContainer.visible = false
+	currentTargets = []
+	for entitie in controlEntities + nonControlEntities:
+		entitie.set_color("ffffff")
+
+func addBattleAction(action:BattleActions):
+	var n = 0
+	var found = false
+	while n < battleActions.size():
+		if battleActions[n][0].speed == action.speed:
+			found = true
+			battleActions[n].append(action)
+			break
+		elif battleActions[n][0].speed > action.speed:
+			battleActions.insert(n,[action])
+			found = true
+			break
+		n+=1
+	
+	if !found:
+		battleActions.append([action])
+
+
+func update_chains() -> void:
+	for chain in $SpeedBar/ChainTexs.get_children():
+		chain.queue_free()
+	
+	var chain_actions:Array[BattleActions]
+	var current_team:String = ""
+	var start_postion_x:int
+	
+	for action_speed in battleActions:
+		var is_same:bool = true
+		for action in action_speed:
+			if current_team == "":
+				current_team = action.entitie.get_team()
+				start_postion_x = action.tex_speed.position.x+action.tex_speed.size.x
+			
+			elif action.entitie.get_team() != current_team:
+				if chain_actions.size() > 1 and chain_actions[0].speed != chain_actions[-1].speed:
+					create_chain(start_postion_x,chain_actions[-1].tex_speed.position.x,"10dfdf")
+				is_same = false
+				current_team = ""
+				break
+			
+		if !is_same:
+			for action in action_speed:
+				chain_actions = []
+				chain_actions.append(action)
+				action.chain_actions = chain_actions
+			chain_actions = []
+			current_team = ""
+		else:
+			for action in action_speed:
+				chain_actions.append(action)
+				action.chain_actions = chain_actions
+	if current_team != "" and chain_actions.size() > 1 and chain_actions[0].speed != chain_actions[-1].speed:
+		create_chain(start_postion_x,chain_actions[-1].tex_speed.position.x,"10dfdf")
+
+func create_chain(start_postion_x:int,end_postion_x:int,color:Color):
+	for n in range((end_postion_x-start_postion_x)/32+1):
+		var tex_rect = TextureRect.new()
+		tex_rect.position = Vector2(n*32+start_postion_x,0)
+		tex_rect.texture = preload("res://sprites/Chain.png")
+		tex_rect.modulate = color
+		$SpeedBar/ChainTexs.add_child(tex_rect)
+
+func update_speed_bar() -> void:
+	var min_value = battleActions[0][0].speed
+	var max_value = battleActions[-1][0].speed
+	$SpeedBar/ProgressBar.min_value = min_value-2
+	$SpeedBar/ProgressBar.max_value = max_value+2
+	$SpeedBar/ProgressBar.value = min_value-2
+	
+	if min_value == max_value:
+		for n in range(len(battleActions[0])):
+			battleActions[0][n].tex_speed.position = Vector2(500,n*32)
+	else:
+		var last_speed = 0
+		for actions in battleActions:
+			var totalY = 0
+			for n in range(len(actions)):
+				actions[n].tex_speed.position = Vector2(1000/(max_value-min_value+4)*(actions[n].speed-min_value+2)-actions[n].tex_speed.size.x*actions[n].tex_speed.scale.x/2,totalY)
+				totalY += actions[n].tex_speed.size.y*actions[n].tex_speed.scale.y
+
+
+func start_actions() -> void:
+	var current_chain_size:int = 0
+	for action_speed in battleActions: 
+		$SpeedBar/ProgressBar.value = action_speed[0].speed
+		for action in action_speed:
+			if current_chain_size == 0:
+				current_chain_size = action.chain_actions.size()
+			current_chain_size-=1
+			await action.use_action()
+			if current_chain_size == 0:
+				await get_tree().create_timer(2.0).timeout
+			else:
+				await get_tree().create_timer(0.2).timeout
+	
+	$SpeedBar/ProgressBar.value = $SpeedBar/ProgressBar.max_value
+	await get_tree().create_timer(0.2).timeout
+	
+	for speedAction in battleActions:
+		for action in speedAction:
+			action.tex_speed.queue_free()
+	
+	battleActions.clear()
+	$SpeedBar/ProgressBar.value = $SpeedBar/ProgressBar.min_value
+	
+	for e in controlEntities + nonControlEntities:
+		e.current_actions.clear()
+	
+	update_chains()

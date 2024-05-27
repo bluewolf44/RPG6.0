@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CombatData" load_steps=5 format=3 uid="uid://fphbk3y6u3s8"]
+
+[ext_resource type="Resource" uid="uid://bm4kmmvmeq0pu" path="res://AutoLoad/AttackTest1.tres" id="1_f3rea"]
+[ext_resource type="Resource" uid="uid://cewwp13nhk2gy" path="res://AutoLoad/AttackTest3.tres" id="2_gyyi6"]
+[ext_resource type="Script" path="res://ResourceClasses/CombatData.gd" id="3_cotar"]
+[ext_resource type="Texture2D" uid="uid://ca1yeg1v806qg" path="res://sprites/Boss Dryad Yggdrasil.png" id="4_ofcch"]
+
+[resource]
+script = ExtResource("3_cotar")
+entitieName = "Dryad"
+texture = ExtResource("4_ofcch")
+scale = Vector2(0.5, 0.5)
+baseSpeed = 10
+maxHealth = 20
+baseDef = 3
+actionPointsStart = 4
+actionPointsPerTurn = 2
+actions = Array[Resource("res://ResourceClasses/Action.gd")]([ExtResource("1_f3rea"), ExtResource("2_gyyi6")])

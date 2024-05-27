@@ -1,0 +1,2 @@
+extends ActionAnimation
+class_name BasicAttackChain

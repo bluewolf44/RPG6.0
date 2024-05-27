@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="ChainConditionsAttack" load_steps=2 format=3 uid="uid://cospajlojaexu"]
+
+[ext_resource type="Script" path="res://ResourceClasses/ChainConditions/ChainConditionsAttack/ChainConditionsAttack.gd" id="1_lasfl"]
+
+[resource]
+script = ExtResource("1_lasfl")

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=6 format=3 uid="uid://bpa82h464scqn"]
+
+[ext_resource type="Script" path="res://ResourceClasses/ActionAnimations/BasicAttack.gd" id="1_dyc64"]
+[ext_resource type="Script" path="res://ResourceClasses/ChainConditions/ChainConditionsAttack/ChainAttackMultSpeed.gd" id="1_r1inu"]
+[ext_resource type="Script" path="res://ResourceClasses/Attack.gd" id="1_ysp5w"]
+
+[sub_resource type="Resource" id="Resource_wnr6d"]
+script = ExtResource("1_dyc64")
+
+[sub_resource type="Resource" id="Resource_umbrq"]
+script = ExtResource("1_r1inu")
+speedMult = 1.2
+
+[resource]
+script = ExtResource("1_ysp5w")
+baseAttack = 10.0
+defenceMult = 1.0
+chainConditionsAttack = Array[Resource("res://ResourceClasses/ChainConditions/ChainConditionsAttack/ChainConditionsAttack.gd")]([SubResource("Resource_umbrq")])
+actionName = "Normal"
+targetsType = 2
+maxNumberOfTargets = 1
+minNumberOfTargets = 1
+cost = 1
+speedMult = 1.0
+actionAnimation = SubResource("Resource_wnr6d")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://bm4kmmvmeq0pu"]
+
+[ext_resource type="Script" path="res://ResourceClasses/Attack.gd" id="1_bg4lb"]
+
+[resource]
+script = ExtResource("1_bg4lb")
+baseAttack = 1.0
+defenceMult = 0.5
+critMult = 3.0
+actionName = "Fast"
+targetsType = 2
+maxNumberOfTargets = 1
+minNumberOfTargets = 1
+speedMult = 0.7
