@@ -34,6 +34,7 @@ func readyBattle(party:Array,enemies:Array) -> void:
 
 func create_non_control_entitie_attacks():
 	for entitie in nonControlEntities:
+		
 		addBattleAction(BattleActions.new(entitie,[controlEntities.pick_random()],entitie.data.actions.pick_random(),self))
 	update_speed_bar()
 	update_chains()
@@ -229,6 +230,7 @@ func start_actions() -> void:
 	var current_chain_size:int = 0
 	for action_speed in battleActions: 
 		$SpeedBar/ProgressBar.value = action_speed[0].speed
+		action_speed.shuffle()
 		for action in action_speed:
 			if current_chain_size == 0:
 				current_chain_size = action.chain_actions.size()
@@ -253,7 +255,6 @@ func start_actions() -> void:
 	for e in controlEntities + nonControlEntities:
 		e.currentPoints += e.data.actionPointsPerTurn + int(currentTurn/2)
 		e.current_actions.clear()
-	
-	update_chains()
+	create_non_control_entitie_attacks()
 	
 	
