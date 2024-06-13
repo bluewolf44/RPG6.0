@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://bpa82h464scqn" path="res://AutoLoad/AttackTest2.tres" id="2_rfd57"]
 [ext_resource type="Resource" uid="uid://cewwp13nhk2gy" path="res://AutoLoad/AttackTest3.tres" id="3_rdjfg"]
 [ext_resource type="Script" path="res://ResourceClasses/CombatData.gd" id="4_y3ugt"]
-[ext_resource type="Texture2D" uid="uid://c144ned6mb3t5" path="res://sprites/Rabbit Warriors Knight.png" id="5_l8mxr"]
+[ext_resource type="Texture2D" uid="uid://c144ned6mb3t5" path="res://sprites/Monsters/Rabbit Warriors Knight.png" id="5_l8mxr"]
 
 [resource]
 script = ExtResource("4_y3ugt")

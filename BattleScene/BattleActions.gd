@@ -55,9 +55,10 @@ func exit_mouse()->void:
 
 func create_lable()->void:
 	var lable_text:Array[String] = [
-		"[color=blue]Test[/color]:69",
+		action.actionName,
 		"Speed:"+str(speed),
 		"Cost:"+str(action.cost),
+		"Damage"+str(action.baseAttack)
 	]
 	var label_postion:Vector2 = tex_speed.global_position
 	label_postion.x += tex_speed.size.x*tex_speed.scale.x

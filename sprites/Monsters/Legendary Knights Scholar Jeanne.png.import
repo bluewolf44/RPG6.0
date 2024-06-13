@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c144ned6mb3t5"
-path="res://.godot/imported/Rabbit Warriors Knight.png-d20ed005703a60c9f9edcb3e8114948e.ctex"
+uid="uid://3svd3wwqa2um"
+path="res://.godot/imported/Legendary Knights Scholar Jeanne.png-bcab19b8e982aa925850438e649fa966.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Rabbit Warriors Knight.png"
-dest_files=["res://.godot/imported/Rabbit Warriors Knight.png-d20ed005703a60c9f9edcb3e8114948e.ctex"]
+source_file="res://sprites/Monsters/Legendary Knights Scholar Jeanne.png"
+dest_files=["res://.godot/imported/Legendary Knights Scholar Jeanne.png-bcab19b8e982aa925850438e649fa966.ctex"]
 
 [params]
 

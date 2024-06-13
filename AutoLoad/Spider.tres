@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://cewwp13nhk2gy" path="res://AutoLoad/AttackTest3.tres" id="3_evsoc"]
 [ext_resource type="Script" path="res://ResourceClasses/Attack.gd" id="4_3qi8m"]
 [ext_resource type="Script" path="res://ResourceClasses/CombatData.gd" id="4_ar11q"]
-[ext_resource type="Texture2D" uid="uid://b8mjvpdry1arq" path="res://sprites/Forest Spider.png" id="4_bj837"]
+[ext_resource type="Texture2D" uid="uid://b8mjvpdry1arq" path="res://sprites/Monsters/Forest Spider.png" id="4_bj837"]
 
 [sub_resource type="Resource" id="Resource_rm8sr"]
 script = ExtResource("3_170yb")

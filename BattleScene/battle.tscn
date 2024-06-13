@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bk3suks3erdfn"]
+[gd_scene load_steps=12 format=3 uid="uid://bk3suks3erdfn"]
 
 [ext_resource type="Theme" uid="uid://bdrtfu8fmvsgk" path="res://tasks_room.tres" id="1_1d2ma"]
 [ext_resource type="Script" path="res://BattleScene/battle.gd" id="1_1o5fr"]
@@ -7,10 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://cjcl7aott2ros" path="res://sprites/ActionPoints.png" id="4_0l78g"]
 [ext_resource type="Texture2D" uid="uid://dx6t3yhacctbk" path="res://sprites/ActionPoints2.png" id="5_egfy0"]
 [ext_resource type="Texture2D" uid="uid://cfrokph530rbx" path="res://sprites/ActionPoints3.png" id="5_r37yw"]
+[ext_resource type="Texture2D" uid="uid://bcdn0nx0s3umn" path="res://sprites/Leaf.png" id="8_tsmfv"]
 
 [sub_resource type="Theme" id="Theme_3iy0k"]
 
 [sub_resource type="Theme" id="Theme_3vit2"]
+
+[sub_resource type="Curve" id="Curve_so5qu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.899713, 0.767077), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -179,6 +184,42 @@ theme = SubResource("Theme_3vit2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ToolBar/MarginContainer"]
 layout_mode = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-101, 249)
+emitting = false
+amount = 20
+lifetime = 0.3
+explosiveness = 1.0
+texture = ExtResource("8_tsmfv")
+particle_flag_align_y = true
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 280.0
+initial_velocity_max = 300.0
+linear_accel_min = -0.5
+scale_amount_min = 0.4
+scale_amount_curve = SubResource("Curve_so5qu")
+color = Color(0, 0.356863, 0, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(-101, 249)
+amount = 20
+lifetime = 0.5
+explosiveness = 0.7
+texture = ExtResource("8_tsmfv")
+particle_flag_align_y = true
+direction = Vector2(-1, 0)
+spread = 25.66
+gravity = Vector2(0, 0)
+initial_velocity_min = 550.0
+initial_velocity_max = 600.0
+linear_accel_min = -0.5
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_so5qu")
+color = Color(0, 0.356863, 0, 1)
 
 [connection signal="gui_input" from="." to="." method="back_ground_click"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Button" to="." method="start_actions"]

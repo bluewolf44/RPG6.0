@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://bpa82h464scqn" path="res://AutoLoad/AttackTest2.tres" id="2_tbsnc"]
 [ext_resource type="Resource" uid="uid://cewwp13nhk2gy" path="res://AutoLoad/AttackTest3.tres" id="3_xyefv"]
 [ext_resource type="Script" path="res://ResourceClasses/CombatData.gd" id="4_a1mav"]
-[ext_resource type="Texture2D" uid="uid://3svd3wwqa2um" path="res://sprites/Legendary Knights Scholar Jeanne.png" id="5_51blg"]
+[ext_resource type="Texture2D" uid="uid://3svd3wwqa2um" path="res://sprites/Monsters/Legendary Knights Scholar Jeanne.png" id="5_51blg"]
 
 [resource]
 script = ExtResource("4_a1mav")

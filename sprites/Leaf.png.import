@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8mjvpdry1arq"
-path="res://.godot/imported/Forest Spider.png-173387f87ca457dc92e342bb75fae280.ctex"
+uid="uid://bcdn0nx0s3umn"
+path="res://.godot/imported/Leaf.png-593fc1497ebb3fcd4a905622a144c64c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Forest Spider.png"
-dest_files=["res://.godot/imported/Forest Spider.png-173387f87ca457dc92e342bb75fae280.ctex"]
+source_file="res://sprites/Leaf.png"
+dest_files=["res://.godot/imported/Leaf.png-593fc1497ebb3fcd4a905622a144c64c.ctex"]
 
 [params]
 

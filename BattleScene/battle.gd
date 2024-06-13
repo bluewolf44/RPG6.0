@@ -178,29 +178,36 @@ func update_chains() -> void:
 
 	for action_speed in battleActions:
 		var is_same:bool = true
+		var inside_team:String
 		for action in action_speed:
 			if current_team == "":
 				current_team = action.entitie.get_team()
 				start_postion_x = action.tex_speed.position.x+setCorretCenter(action.tex_speed).x
-				
-			elif action.entitie.get_team() != current_team:
+			inside_team = action_speed[0].entitie.get_team()
+			if action.entitie.get_team() != inside_team:
 				if chain_actions.size() > 1 and chain_actions[0].speed != chain_actions[-1].speed:
 					create_chain(start_postion_x,chain_actions[-1].tex_speed.position.x+setCorretCenter(chain_actions[-1].tex_speed).x,"10dfdf")
-				is_same = false
-				current_team = ""
-				break
-			
-		if !is_same:
-			for action in action_speed:
+				for a in action_speed:
+					chain_actions = []
+					chain_actions.append(a)
+					a.chain_actions = chain_actions
 				chain_actions = []
-				chain_actions.append(action)
-				action.chain_actions = chain_actions
+				current_team = ""
+				is_same = false
+				break
+		
+		if !is_same:
+			continue
+		if current_team != inside_team:
+			if chain_actions.size() > 1 and chain_actions[0].speed != chain_actions[-1].speed:
+				create_chain(start_postion_x,chain_actions[-1].tex_speed.position.x+setCorretCenter(chain_actions[-1].tex_speed).x,"10dfdf")
 			chain_actions = []
-			current_team = ""
-		else:
-			for action in action_speed:
-				chain_actions.append(action)
-				action.chain_actions = chain_actions
+			current_team = inside_team
+			start_postion_x = action_speed[0].tex_speed.position.x+setCorretCenter(action_speed[0].tex_speed).x
+			
+		for action in action_speed:
+			chain_actions.append(action)
+			action.chain_actions = chain_actions
 	if current_team != "" and chain_actions.size() > 1 and chain_actions[0].speed != chain_actions[-1].speed:
 		create_chain(start_postion_x,chain_actions[-1].tex_speed.position.x+setCorretCenter(chain_actions[-1].tex_speed).x,"10dfdf")
 

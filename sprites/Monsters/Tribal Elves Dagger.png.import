@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca1yeg1v806qg"
-path="res://.godot/imported/Boss Dryad Yggdrasil.png-dac9b0e15252a4ff2cf79d76725fbec0.ctex"
+uid="uid://b0b7aje30i56o"
+path="res://.godot/imported/Tribal Elves Dagger.png-2c99bf56064e2ca6777d80b8bd201967.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Boss Dryad Yggdrasil.png"
-dest_files=["res://.godot/imported/Boss Dryad Yggdrasil.png-dac9b0e15252a4ff2cf79d76725fbec0.ctex"]
+source_file="res://sprites/Monsters/Tribal Elves Dagger.png"
+dest_files=["res://.godot/imported/Tribal Elves Dagger.png-2c99bf56064e2ca6777d80b8bd201967.ctex"]
 
 [params]
 
