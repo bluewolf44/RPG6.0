@@ -18,10 +18,13 @@ func select(inputEvent:InputEvent) -> void:
 			
 			var actionBar = main.get_node("PanelContainer/MarginContainer/VBoxContainer")
 			actionBar.visible = true
-		
+			
 			actionBar.get_node("Text/Label2").text = str(currentHealth)
+			
+			var current_total = min(data.actionPointsStart + int(data.actionPointsPerTurn*main.currentTurn),10)
 			actionBar.get_node("ActionPointsBar/ActionPoints").custom_minimum_size = Vector2(34*currentPoints,34)
-			actionBar.get_node("ActionPointsBar/ActionPoints2").custom_minimum_size = Vector2(34*(10-currentPoints),34)
+			actionBar.get_node("ActionPointsBar/ActionPoints2").custom_minimum_size = Vector2(34*(10-current_total),34)
+			actionBar.get_node("ActionPointsBar/ActionPoints3").custom_minimum_size = Vector2(34*(current_total-currentPoints),34)
 			
 			for node in actionBar.get_node("HBoxContainer").get_children():
 				node.visible = false

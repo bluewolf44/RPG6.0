@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bk3suks3erdfn"]
+[gd_scene load_steps=10 format=3 uid="uid://bk3suks3erdfn"]
 
 [ext_resource type="Theme" uid="uid://bdrtfu8fmvsgk" path="res://tasks_room.tres" id="1_1d2ma"]
 [ext_resource type="Script" path="res://BattleScene/battle.gd" id="1_1o5fr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://rfvq28qqui64" path="res://sprites/tile008.png" id="3_20k4o"]
 [ext_resource type="Texture2D" uid="uid://cjcl7aott2ros" path="res://sprites/ActionPoints.png" id="4_0l78g"]
 [ext_resource type="Texture2D" uid="uid://dx6t3yhacctbk" path="res://sprites/ActionPoints2.png" id="5_egfy0"]
+[ext_resource type="Texture2D" uid="uid://cfrokph530rbx" path="res://sprites/ActionPoints3.png" id="5_r37yw"]
 
 [sub_resource type="Theme" id="Theme_3iy0k"]
 
@@ -79,7 +80,6 @@ theme = SubResource("Theme_3iy0k")
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Text" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -109,6 +109,14 @@ clip_contents = true
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 texture = ExtResource("4_0l78g")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="ActionPoints3" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/ActionPointsBar"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+texture = ExtResource("5_r37yw")
 expand_mode = 1
 stretch_mode = 2
 

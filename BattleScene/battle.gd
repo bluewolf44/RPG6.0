@@ -6,7 +6,7 @@ var nonControlEntities = []
 var selected:Entitie
 enum EVENT_SET {INFO,SELECT,ACTION}
 var currentEvent:EVENT_SET
-var currentTurn:int = 1
+var currentTurn:int = 0
 
 var currentActionSelection:Action
 var currentTargets:Array[Entitie]
@@ -34,9 +34,10 @@ func readyBattle(party:Array,enemies:Array) -> void:
 
 func create_non_control_entitie_attacks():
 	for entitie in nonControlEntities:
-		var temp_actions:Array[Action] = entitie.data.actions
+		var temp_actions:Array[Action] = entitie.data.actions.duplicate()
 		for n in range(entitie.data.actions.size()):
 			var current:Action = temp_actions.pick_random()
+			print(entitie,entitie.currentPoints,current,current.cost)
 			temp_actions.erase(current)
 			
 			if entitie.currentPoints >= current.cost:
@@ -259,7 +260,7 @@ func start_actions() -> void:
 	
 	currentTurn += 1
 	for e in controlEntities + nonControlEntities:
-		e.currentPoints = e.data.actionPointsPerTurn + int(currentTurn/2)
+		e.currentPoints = min(int(e.data.actionPointsPerTurn*currentTurn) + e.data.actionPointsStart,10)
 		e.current_actions.clear()
 	create_non_control_entitie_attacks()
 	

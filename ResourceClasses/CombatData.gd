@@ -10,6 +10,6 @@ extends Resource
 #@export var currentHealth:int
 @export var baseDef:int
 @export var actionPointsStart:int
-@export var actionPointsPerTurn:int
+@export var actionPointsPerTurn:float
 
 @export var actions:Array[Action]

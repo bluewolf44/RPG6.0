@@ -14,5 +14,5 @@ baseSpeed = 10
 maxHealth = 20
 baseDef = 3
 actionPointsStart = 3
-actionPointsPerTurn = 1
+actionPointsPerTurn = 0.5
 actions = Array[Resource("res://ResourceClasses/Action.gd")]([ExtResource("1_2ctlm"), ExtResource("3_evsoc")])
