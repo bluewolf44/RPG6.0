@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CombatData" load_steps=6 format=3 uid="uid://btvwfo3im5hun"]
+
+[ext_resource type="Resource" uid="uid://bm4kmmvmeq0pu" path="res://AutoLoad/AttackTest1.tres" id="1_1h1oj"]
+[ext_resource type="Resource" uid="uid://bpa82h464scqn" path="res://AutoLoad/AttackTest2.tres" id="2_rfd57"]
+[ext_resource type="Resource" uid="uid://cewwp13nhk2gy" path="res://AutoLoad/AttackTest3.tres" id="3_rdjfg"]
+[ext_resource type="Script" path="res://ResourceClasses/CombatData.gd" id="4_y3ugt"]
+[ext_resource type="Texture2D" uid="uid://c144ned6mb3t5" path="res://sprites/Rabbit Warriors Knight.png" id="5_l8mxr"]
+
+[resource]
+script = ExtResource("4_y3ugt")
+entitieName = "Warrior"
+texture = ExtResource("5_l8mxr")
+scale = Vector2(0.5, 0.5)
+hFlip = true
+baseSpeed = 12
+maxHealth = 20
+baseDef = 3
+actionPointsStart = 3
+actionPointsPerTurn = 0.5
+actions = Array[Resource("res://ResourceClasses/Action.gd")]([ExtResource("1_1h1oj"), ExtResource("2_rfd57"), ExtResource("3_rdjfg")])

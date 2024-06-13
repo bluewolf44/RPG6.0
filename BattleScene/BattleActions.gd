@@ -18,6 +18,7 @@ func _init(entitie:Entitie,targets:Array[Entitie],action:Action,main:Control) ->
 	tex_speed = TextureRect.new()
 	tex_speed.texture = entitie.data.texture
 	tex_speed.scale = entitie.data.scale/2 
+	tex_speed.flip_h = entitie.data.hFlip
 	tex_speed.mouse_entered.connect(on_moused)
 	tex_speed.mouse_exited.connect(exit_mouse)
 	tex_speed.gui_input.connect(selected)

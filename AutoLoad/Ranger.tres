@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CombatData" load_steps=6 format=3 uid="uid://dpoq6ltq8fom1"]
+
+[ext_resource type="Resource" uid="uid://bm4kmmvmeq0pu" path="res://AutoLoad/AttackTest1.tres" id="1_8qo06"]
+[ext_resource type="Resource" uid="uid://bpa82h464scqn" path="res://AutoLoad/AttackTest2.tres" id="2_66sov"]
+[ext_resource type="Resource" uid="uid://cewwp13nhk2gy" path="res://AutoLoad/AttackTest3.tres" id="3_tkm50"]
+[ext_resource type="Script" path="res://ResourceClasses/CombatData.gd" id="4_gdy2f"]
+[ext_resource type="Texture2D" uid="uid://b0b7aje30i56o" path="res://sprites/Tribal Elves Dagger.png" id="5_btiqs"]
+
+[resource]
+script = ExtResource("4_gdy2f")
+entitieName = "Ranger"
+texture = ExtResource("5_btiqs")
+scale = Vector2(0.5, 0.5)
+hFlip = true
+baseSpeed = 8
+maxHealth = 20
+baseDef = 3
+actionPointsStart = 3
+actionPointsPerTurn = 0.5
+actions = Array[Resource("res://ResourceClasses/Action.gd")]([ExtResource("1_8qo06"), ExtResource("2_66sov"), ExtResource("3_tkm50")])

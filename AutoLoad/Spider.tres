@@ -1,18 +1,37 @@
-[gd_resource type="Resource" script_class="CombatData" load_steps=5 format=3 uid="uid://b0mbdtx1bsj8g"]
+[gd_resource type="Resource" script_class="CombatData" load_steps=9 format=3 uid="uid://b0mbdtx1bsj8g"]
 
 [ext_resource type="Resource" uid="uid://bm4kmmvmeq0pu" path="res://AutoLoad/AttackTest1.tres" id="1_2ctlm"]
+[ext_resource type="Script" path="res://ResourceClasses/ActionAnimations/BasicAttack.gd" id="3_170yb"]
 [ext_resource type="Resource" uid="uid://cewwp13nhk2gy" path="res://AutoLoad/AttackTest3.tres" id="3_evsoc"]
+[ext_resource type="Script" path="res://ResourceClasses/Attack.gd" id="4_3qi8m"]
 [ext_resource type="Script" path="res://ResourceClasses/CombatData.gd" id="4_ar11q"]
-[ext_resource type="Texture2D" uid="uid://dyvtt3ouu6xu1" path="res://sprites/Singles/tile188.png" id="5_yscj0"]
+[ext_resource type="Texture2D" uid="uid://b8mjvpdry1arq" path="res://sprites/Forest Spider.png" id="4_bj837"]
+
+[sub_resource type="Resource" id="Resource_rm8sr"]
+script = ExtResource("3_170yb")
+
+[sub_resource type="Resource" id="Resource_rxgym"]
+script = ExtResource("4_3qi8m")
+baseAttack = 11.0
+defenceMult = 1.5
+chainConditionsAttack = Array[Resource("res://ResourceClasses/ChainConditions/ChainConditionsAttack/ChainConditionsAttack.gd")]([])
+actionName = "IDK"
+targetsType = 2
+maxNumberOfTargets = 1
+minNumberOfTargets = 1
+cost = 4
+speedMult = 0.5
+actionAnimation = SubResource("Resource_rm8sr")
 
 [resource]
 script = ExtResource("4_ar11q")
 entitieName = "Spider"
-texture = ExtResource("5_yscj0")
-scale = Vector2(4, 4)
+texture = ExtResource("4_bj837")
+scale = Vector2(1, 1)
+hFlip = false
 baseSpeed = 10
 maxHealth = 20
 baseDef = 3
 actionPointsStart = 3
 actionPointsPerTurn = 0.5
-actions = Array[Resource("res://ResourceClasses/Action.gd")]([ExtResource("1_2ctlm"), ExtResource("3_evsoc")])
+actions = Array[Resource("res://ResourceClasses/Action.gd")]([ExtResource("1_2ctlm"), ExtResource("3_evsoc"), SubResource("Resource_rxgym")])

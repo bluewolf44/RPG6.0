@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CombatData" load_steps=6 format=3 uid="uid://d0w5078558mcg"]
+
+[ext_resource type="Resource" uid="uid://bm4kmmvmeq0pu" path="res://AutoLoad/AttackTest1.tres" id="1_0cxku"]
+[ext_resource type="Resource" uid="uid://bpa82h464scqn" path="res://AutoLoad/AttackTest2.tres" id="2_tbsnc"]
+[ext_resource type="Resource" uid="uid://cewwp13nhk2gy" path="res://AutoLoad/AttackTest3.tres" id="3_xyefv"]
+[ext_resource type="Script" path="res://ResourceClasses/CombatData.gd" id="4_a1mav"]
+[ext_resource type="Texture2D" uid="uid://3svd3wwqa2um" path="res://sprites/Legendary Knights Scholar Jeanne.png" id="5_51blg"]
+
+[resource]
+script = ExtResource("4_a1mav")
+entitieName = "Healer"
+texture = ExtResource("5_51blg")
+scale = Vector2(0.5, 0.5)
+hFlip = true
+baseSpeed = 10
+maxHealth = 20
+baseDef = 3
+actionPointsStart = 3
+actionPointsPerTurn = 0.5
+actions = Array[Resource("res://ResourceClasses/Action.gd")]([ExtResource("1_0cxku"), ExtResource("2_tbsnc"), ExtResource("3_xyefv")])

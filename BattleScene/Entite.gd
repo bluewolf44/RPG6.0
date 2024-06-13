@@ -26,6 +26,7 @@ func createSelf(placement:Vector2) -> void:
 	sprite.texture = data.texture
 	sprite.scale = data.scale
 	sprite.position = placement
+	sprite.flip_h = data.hFlip
 
 	control.size = data.texture.get_size()*data.scale
 	control.mouse_filter = Control.MOUSE_FILTER_STOP

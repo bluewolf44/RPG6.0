@@ -15,7 +15,7 @@ var battleActions = []
 
 func _ready() -> void:
 	#readyBattle(Data.party,[load("res://AutoLoad/Spider.tres")])
-	readyBattle(Data.party,[load("res://AutoLoad/Dryad.tres"),load("res://AutoLoad/Spider.tres")])
+	readyBattle(Data.party,[load("res://AutoLoad/Spider.tres"),load("res://AutoLoad/Dryad.tres"),load("res://AutoLoad/Spider.tres")])
 
 func readyBattle(party:Array,enemies:Array) -> void:
 	currentEvent = EVENT_SET.INFO
@@ -88,20 +88,20 @@ func normal_add_right(total:int,number:int) -> Vector2:
 				Vector2(800,420),
 			],
 			[
-				Vector2(900,170),
+				Vector2(1000,170),
 				Vector2(800,295),
-				Vector2(900,420),
+				Vector2(1000,420),
 			],
 			[
 				Vector2(800,160),
-				Vector2(900,250),
-				Vector2(900,390),
+				Vector2(1000,250),
+				Vector2(1000,390),
 				Vector2(800,480),
 			],
 			[
 				Vector2(850,160),
-				Vector2(900,250),
-				Vector2(900,390),
+				Vector2(1000,250),
+				Vector2(1000,390),
 				Vector2(850,480),
 				Vector2(850,320),
 			],
