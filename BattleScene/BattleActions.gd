@@ -26,7 +26,7 @@ func _init(entitie:Entitie,targets:Array[Entitie],action:Action,main:Control) ->
 	main.get_node("SpeedBar/EntitesSpeeds").add_child(tex_speed)
 	
 func calulate_speed() -> float:
-	speed = entitie.data.baseSpeed*action.speedMult
+	speed = round(entitie.data.baseSpeed*action.speedMult)
 	return speed
 
 func selected(inputEvent:InputEvent) -> void:

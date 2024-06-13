@@ -25,7 +25,7 @@ func select(inputEvent:InputEvent) -> void:
 			
 			for i in data.actions.size():
 				actionBar.get_node("HBoxContainer").get_child(i).visible = true
-				actionBar.get_node("HBoxContainer").get_child(i).text = data.actions[i].actionName
+				actionBar.get_node("HBoxContainer").get_child(i).text = data.actions[i].actionName + ", Speed:" + str(round(data.actions[i].speedMult*data.baseSpeed))
 				actionBar.get_node("HBoxContainer").get_child(i).disabled = false
 				
 				if data.actions[i].cost <= currentPoints and not get_in_current(data.actions[i]):

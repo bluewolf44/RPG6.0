@@ -37,7 +37,6 @@ func create_non_control_entitie_attacks():
 		var temp_actions:Array[Action] = entitie.data.actions.duplicate()
 		for n in range(entitie.data.actions.size()):
 			var current:Action = temp_actions.pick_random()
-			print(entitie,entitie.currentPoints,current,current.cost)
 			temp_actions.erase(current)
 			
 			if entitie.currentPoints >= current.cost:

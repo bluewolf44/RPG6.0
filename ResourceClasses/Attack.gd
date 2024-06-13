@@ -7,7 +7,7 @@ var currentAttack:float
 @export var chainConditionsAttack:Array[ChainConditionsAttack]
 
 func runAction(battleAction:BattleActions) -> void:
-	currentAttack = baseAttack
+	currentAttack = baseAttack*randf_range(0.8,1.2)
 	
 	for condition in chainConditionsAttack:
 		condition.run_effect(self,battleAction)
@@ -17,8 +17,8 @@ func runAction(battleAction:BattleActions) -> void:
 		
 	
 	for entitie in battleAction.targets:
-		print(currentAttack-defenceMult*entitie.currentDef)
-		entitie.currentHealth -= currentAttack-defenceMult*entitie.currentDef
+		print(round(currentAttack-defenceMult*entitie.currentDef))
+		entitie.currentHealth -= round(currentAttack-defenceMult*entitie.currentDef)
 	
 	if next != null:
 		next.runAction(battleAction)
