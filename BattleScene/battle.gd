@@ -102,7 +102,8 @@ func normal_add_right(total:int,number:int) -> Vector2:
 		][total-1][number]
 
 func clear_selected():
-	selected.set_color("ffffff")
+	for entitie in controlEntities+nonControlEntities:
+		entitie.set_color("ffffff")
 	$PanelContainer/MarginContainer/VBoxContainer.visible = false
 	selected = null
 
@@ -253,7 +254,7 @@ func start_actions() -> void:
 	
 	currentTurn += 1
 	for e in controlEntities + nonControlEntities:
-		e.currentPoints += e.data.actionPointsPerTurn + int(currentTurn/2)
+		e.currentPoints = e.data.actionPointsPerTurn + int(currentTurn/2)
 		e.current_actions.clear()
 	create_non_control_entitie_attacks()
 	

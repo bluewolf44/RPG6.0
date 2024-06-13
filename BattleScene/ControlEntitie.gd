@@ -12,6 +12,10 @@ func select(inputEvent:InputEvent) -> void:
 			
 			main.selected = self
 			set_color(getColor())
+			for action in current_actions:
+				for entitie in action.targets:
+					entitie.set_color("ddd41f")
+			
 			
 			var actionBar = main.get_node("PanelContainer/MarginContainer/VBoxContainer")
 			actionBar.visible = true
