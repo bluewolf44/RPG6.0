@@ -34,8 +34,13 @@ func readyBattle(party:Array,enemies:Array) -> void:
 
 func create_non_control_entitie_attacks():
 	for entitie in nonControlEntities:
-		
-		addBattleAction(BattleActions.new(entitie,[controlEntities.pick_random()],entitie.data.actions.pick_random(),self))
+		var temp_actions:Array[Action] = entitie.data.actions
+		for n in range(entitie.data.actions.size()):
+			var current:Action = temp_actions.pick_random()
+			temp_actions.erase(current)
+			
+			if entitie.currentPoints >= current.cost:
+				addBattleAction(BattleActions.new(entitie,[controlEntities.pick_random()],current,self))
 	update_speed_bar()
 	update_chains()
 
