@@ -203,23 +203,5 @@ scale_amount_min = 0.4
 scale_amount_curve = SubResource("Curve_so5qu")
 color = Color(0, 0.356863, 0, 1)
 
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
-position = Vector2(-101, 249)
-amount = 20
-lifetime = 0.5
-explosiveness = 0.7
-texture = ExtResource("8_tsmfv")
-particle_flag_align_y = true
-direction = Vector2(-1, 0)
-spread = 25.66
-gravity = Vector2(0, 0)
-initial_velocity_min = 550.0
-initial_velocity_max = 600.0
-linear_accel_min = -0.5
-scale_amount_min = 0.4
-scale_amount_max = 0.5
-scale_amount_curve = SubResource("Curve_so5qu")
-color = Color(0, 0.356863, 0, 1)
-
 [connection signal="gui_input" from="." to="." method="back_ground_click"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Button" to="." method="start_actions"]

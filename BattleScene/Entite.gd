@@ -56,4 +56,3 @@ func get_team() -> String:
 
 func getColor() -> Color:
 	return Color("ffffff")
-

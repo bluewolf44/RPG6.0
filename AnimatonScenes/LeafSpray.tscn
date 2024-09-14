@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn023auyw3fow"]
+
+[ext_resource type="Texture2D" uid="uid://bcdn0nx0s3umn" path="res://sprites/Leaf.png" id="1_huuec"]
+
+[sub_resource type="Curve" id="Curve_so5qu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.899713, 0.767077), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="CPUParticles2D2" type="CPUParticles2D"]
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+lifetime_randomness = 0.3
+texture = ExtResource("1_huuec")
+particle_flag_align_y = true
+direction = Vector2(-1, 0)
+spread = 25.66
+gravity = Vector2(0, 0)
+initial_velocity_min = 950.0
+initial_velocity_max = 1000.0
+linear_accel_min = -0.5
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_so5qu")
+color = Color(0, 0.356863, 0, 1)

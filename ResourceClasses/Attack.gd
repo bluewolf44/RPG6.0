@@ -12,6 +12,7 @@ func runAction(battleAction:BattleActions) -> void:
 	for condition in chainConditionsAttack:
 		condition.run_effect(self,battleAction)
 	var target_tex:Array[TextureRect] = []
+	print(actionAnimation)
 	if actionAnimation != null:
 		await actionAnimation.run(battleAction.entitie,battleAction.targets)
 		
